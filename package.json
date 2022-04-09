@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@obraia/intervalo-confianca",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Algoritmo para calcular intervalo de confia entre duas amostras",
   "main": "index.js",
   "scripts": {

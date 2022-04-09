@@ -23,8 +23,10 @@ import { TabelaProbabilidades } from "./lib/tabela_probabilidades.js";
  * }}
  */
 function main(amostra_a, amostra_b, nivel_confianca) {
-  const tabela = new TabelaProbabilidades("./dados/tabela-probabilidade.csv");
-  const valor_tabela = tabela.obter_valor(amostra_a.length, nivel_confianca);
+  const valor_tabela = TabelaProbabilidades.obter_valor(
+    amostra_a.length,
+    nivel_confianca
+  );
 
   const {
     intervalo_confianca: intervalo_confianca_a,
@@ -60,3 +62,26 @@ function main(amostra_a, amostra_b, nivel_confianca) {
 }
 
 export default main;
+
+console.clear();
+
+const amostra_a = [13, 12, 8, 18, 3, 12, 19, 6];
+const amostra_b = [11, 15, 5, 7, 2, 20, 21, 6];
+const nivel_confianca = "0.950";
+
+const {
+  intervalo_confianca_a,
+  intervalo_confianca_b,
+  desvio_padrao_a,
+  desvio_padrao_b,
+  intervalo_confianca_diferenca,
+} = main(amostra_a, amostra_b, nivel_confianca);
+
+console.table({
+  intervalo_confianca_a,
+  intervalo_confianca_b,
+  desvio_padrao_a,
+  desvio_padrao_b,
+  intervalo_confianca_diferenca,
+  nivel_confianca,
+});
