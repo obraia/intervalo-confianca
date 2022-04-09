@@ -9,7 +9,7 @@ import { TabelaDistribuicao } from './lib/tabela_distribuicao.js';
  * @param {Array<number>} amostra_a
  * @param {Array<number>} amostra_b
  * @param {number} casas_decimais
- * @param {'0.600'| '0.700'| '0.800'| '0.900'| '0.950'| '0.975'| '0.990'| '0.995'} nivel_confianca
+ * @param {'0.600'| '0.700'| '0.800'| '0.900'| '0.950'| '0.975'| '0.990'| '0.995' | string} nivel_confianca
  *
  * @returns {{
  *  intervalo_confianca_a: Array<number>;
@@ -27,7 +27,9 @@ import { TabelaDistribuicao } from './lib/tabela_distribuicao.js';
  * }}
  */
 function main(amostra_a, amostra_b, nivel_confianca, casas_decimais = 3) {
-  const valor_tabela = TabelaDistribuicao.obter_valor(amostra_a.length, nivel_confianca);
+  const valor_tabela = nivel_confianca.includes('@')
+    ? parseFloat(nivel_confianca)
+    : TabelaDistribuicao.obter_valor(amostra_a.length, nivel_confianca);
 
   const {
     media: media_a,
