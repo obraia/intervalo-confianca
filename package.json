@@ -1,13 +1,22 @@
 {
   "type": "module",
-  "name": "planejamento-de-capacidade",
+  "name": "@obraia/intervalo-confianca",
   "version": "1.0.0",
-  "description": "",
+  "description": "Algoritmo para calcular intervalo de confia entre duas amostras",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "intervalo",
+    "confianca",
+    "estatistica",
+    "estatistica descritiva"
+  ],
+  "author": "Bryan Diniz <obraiadev@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obraia/intervalo-confianca"
+  }
 }
