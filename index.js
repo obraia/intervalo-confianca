@@ -8,6 +8,7 @@ import { TabelaDistribuicao } from './lib/tabela_distribuicao.js';
  *
  * @param {Array<number>} amostra_a
  * @param {Array<number>} amostra_b
+ * @param {number} casas_decimais
  * @param {'0.600'| '0.700'| '0.800'| '0.900'| '0.950'| '0.975'| '0.990'| '0.995'} nivel_confianca
  *
  * @returns {{
@@ -25,7 +26,7 @@ import { TabelaDistribuicao } from './lib/tabela_distribuicao.js';
  *  media_diferenca: number;
  * }}
  */
-function main(amostra_a, amostra_b, nivel_confianca) {
+function main(amostra_a, amostra_b, nivel_confianca, casas_decimais = 3) {
   const valor_tabela = TabelaDistribuicao.obter_valor(amostra_a.length, nivel_confianca);
 
   const {
@@ -34,7 +35,7 @@ function main(amostra_a, amostra_b, nivel_confianca) {
     historico_desvio_padrao: historico_desvio_padrao_a,
     intervalo_confianca: intervalo_confianca_a,
     historico_intervalo_confianca: historico_intervalo_confianca_a,
-  } = IntervaloConfianca.calcular_intervalo(amostra_a, valor_tabela);
+  } = IntervaloConfianca.calcular_intervalo(amostra_a, valor_tabela, casas_decimais);
 
   const {
     media: media_b,
@@ -42,7 +43,7 @@ function main(amostra_a, amostra_b, nivel_confianca) {
     intervalo_confianca: intervalo_confianca_b,
     historico_desvio_padrao: historico_desvio_padrao_b,
     historico_intervalo_confianca: historico_intervalo_confianca_b,
-  } = IntervaloConfianca.calcular_intervalo(amostra_b, valor_tabela);
+  } = IntervaloConfianca.calcular_intervalo(amostra_b, valor_tabela, casas_decimais);
 
   const diferenca = IntervaloConfianca.diferenca(amostra_a, amostra_b);
 
@@ -52,7 +53,7 @@ function main(amostra_a, amostra_b, nivel_confianca) {
     historico_desvio_padrao: historico_desvio_padrao_diferenca,
     intervalo_confianca: intervalo_confianca_diferenca,
     historico_intervalo_confianca: historico_intervalo_confianca_diferenca,
-  } = IntervaloConfianca.calcular_intervalo(diferenca, valor_tabela);
+  } = IntervaloConfianca.calcular_intervalo(diferenca, valor_tabela, casas_decimais);
 
   return {
     media_a,
